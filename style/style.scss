@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Maven+Pro:wght@400;600;700;800;900&family=Questrial&display=swap');
 
-$font-stack-cursive: 'Lobster', cursive;
-$font-stack-sans: 'Maven Pro', 'Questrial', sans-serif;
+$font-stack-cursive: 'Lobster',
+cursive;
+$font-stack-sans: 'Maven Pro',
+'Questrial',
+sans-serif;
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -27,6 +30,7 @@ video {
     height: 100%;
     background: rgba(255, 255, 255, 0.322);
     color: white;
+
     .logo {
         font-family: 'Lobster';
         font-size: 5vw;
