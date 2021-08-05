@@ -55,12 +55,13 @@ video {
         position: absolute;
         top: 0;
         right: 0;
-        width: 80%;
+        width: 0%;
         height: 100%;
         border-radius: 8px;
         background: white;
         display: flex;
         flex-direction: column;
+        overflow: clip;
 
         .logo-loader {
             width: 100%;
@@ -70,6 +71,7 @@ video {
             display: flex;
             color: black;
             font-family: 'Lobster';
+            transform: scale(1);
             animation: loading 1s infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
         }
 
@@ -79,8 +81,14 @@ video {
     }
 }
 
+.sidebar.show {
+    width: 80%;
+}
+
 @keyframes loading {
     0% {
-        opacity: 0.2;
+        transform: scale(0.9);
+        opacity: 0.5;
+        
     }
 }

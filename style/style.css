@@ -56,7 +56,7 @@ video {
   position: absolute;
   top: 0;
   right: 0;
-  width: 80%;
+  width: 0%;
   height: 100%;
   border-radius: 8px;
   background: white;
@@ -67,6 +67,7 @@ video {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  overflow: clip;
 }
 
 .ui .sidebar .logo-loader {
@@ -83,6 +84,8 @@ video {
   display: flex;
   color: black;
   font-family: 'Lobster';
+  -webkit-transform: scale(1);
+          transform: scale(1);
   -webkit-animation: loading 1s infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
           animation: loading 1s infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
@@ -91,15 +94,23 @@ video {
   display: none;
 }
 
+.sidebar.show {
+  width: 80%;
+}
+
 @-webkit-keyframes loading {
   0% {
-    opacity: 0.2;
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+    opacity: 0.5;
   }
 }
 
 @keyframes loading {
   0% {
-    opacity: 0.2;
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+    opacity: 0.5;
   }
 }
 /*# sourceMappingURL=style.css.map */
