@@ -12,16 +12,13 @@ function draw() {
 }
 
 // on click
-captureButton.addEventListener('click', (ev) => {
-  sidebar.classList.add('show'); // show sidebar
-  //todo: send image to identification
-})
-
-//when click off the sidebar
-ui.addEventListener('click',() => {
-  if(sidebar.classList.contains('show')) {
-    sidebar.classList.remove('show');
+ui.addEventListener('click', (ev) => {
+  if(ev.target.parentElement.classList.contains('capture')) {
+    sidebar.classList.add('show'); // show sidebar
+  } else if (ev.target.classList.contains('ui') || ev.target.classList.contains('logo')) {
+    sidebar.classList.remove('show'); // show sidebar
   }
+  //todo: send image to identification
 })
 
 //function takes a picture
