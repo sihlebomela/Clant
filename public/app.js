@@ -2,7 +2,7 @@ let capture;
 let captureButton = document.querySelector('.capture');
 let sidebar = document.querySelector('.sidebar');
 let ui = document.querySelector('.ui');
-
+let loader = document.querySelector('.logo-loader')
 function setup() {
   capture = createCapture(VIDEO);
 }
@@ -20,6 +20,34 @@ ui.addEventListener('click', (ev) => {
     let base64Img = takePicture();
     sendRequest(base64Img).then(res => {
       console.log(res);
+       // loop through responses
+       //check if is plant 
+       if (res.is_plant && res.fail_cause == null) {
+         loader.classList.add('done'); // hide the loader
+         for (var prop of res.suggestions) {
+           console.log(prop.plant_name);
+
+           if (prop.plant_details) {
+             prop.plant_details.forEach(detail => {
+               console.log(detail);
+             })
+           }
+
+           if (prop.probability) {
+             console.log(prop.probability.toPrecision(2));
+           }
+
+           if (prop.similar_images) {
+             //loop through the images
+             prop.similar_images.forEach(image => {
+               console.log(image)
+             })
+           }
+         }
+        } else if (res.fail_cause != null) {
+
+        }
+        
     });
   } else if (ev.target.classList.contains('ui') || ev.target.classList.contains('logo')) {
     sidebar.classList.remove('show'); // show sidebar
@@ -34,14 +62,18 @@ function takePicture() {
 }
 
 async function sendRequest(image) {
+  const data = {
+    image: [image],
+}
   const options = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(image)
+    body: JSON.stringify(data)
   };
+  
   const res = await fetch('/identify', options)
-  const json = res.json(); // convert to json
-  return json;
+  .catch(err => console.log)
+  return res.json();
 }
