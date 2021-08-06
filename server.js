@@ -9,9 +9,9 @@ app.use(express.static('public'));
 
 // send images
 app.post('/identify', (req, res) => {
-    
+
     const image = req.body;
-    
+
     const data = {
         api_key: process.env.API_KEY,
         image,
@@ -22,7 +22,8 @@ app.post('/identify', (req, res) => {
             "name_authority",
             "wiki_description",
             "taxonomy",
-            "synonyms"]
+            "synonyms"
+        ]
     };
 
     axios.post('https://api.plant.id/v2/identify', data).then(res => {
