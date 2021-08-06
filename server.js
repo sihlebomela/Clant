@@ -1,20 +1,20 @@
 const express = require('express');
 const app = express();
 const axios = require('axios');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
+const bodyParser = require('body-parser');
 
 require("dotenv").config(); //config env
-
+app.use(bodyParser.json({limit: '6mb'}));//handle sizes images
 app.use(express.static('public'));
 
 // send images
 app.post('/identify', (req, res) => {
-
-    const image = req.body;
+    const image64 = req.body.image;
 
     const data = {
         api_key: process.env.API_KEY,
-        image,
+        images: image64,
         modifiers: ["crops_fast", "similar_images"],
         plant_language: "en",
         plant_details: ["common_names",
@@ -26,9 +26,16 @@ app.post('/identify', (req, res) => {
         ]
     };
 
-    axios.post('https://api.plant.id/v2/identify', data).then(res => {
-        res.json(res.data);
-    }).catch(err => console.log);
+    sendPost(data).then(data => {
+        res.status(200).json(data);
+    })
 })
 
-app.listen(port, (err) => console.log);
+async function sendPost(options) {
+    let res = await axios.post('https://api.plant.id/v2/identify', options)
+    .catch(err => console.log('an error occured', err));
+    let data = res.data;
+    return data
+}
+
+app.listen(port, (err) => console.log(`app running on ${port}`));
