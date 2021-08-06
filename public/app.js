@@ -21,9 +21,9 @@ ui.addEventListener('click', (ev) => {
     sendRequest(base64Img).then(res => {
       console.log(res);
        // loop through responses
+       loader.classList.add('done'); // hide the loader
        //check if is plant 
        if (res.is_plant && res.fail_cause == null) {
-         loader.classList.add('done'); // hide the loader
          for (var prop of res.suggestions) {
            console.log(prop.plant_name);
 
