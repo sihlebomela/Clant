@@ -95,6 +95,29 @@ video {
   display: none;
 }
 
+.ui .sidebar .error {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 999;
+  font-family: "Maven Pro", "Questrial", sans-serif;
+  background: white;
+  text-align: center;
+}
+
+.ui .sidebar .error.show {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .ui .sidebar .similar-images {
   display: -webkit-box;
   display: -ms-flexbox;
