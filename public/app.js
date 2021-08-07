@@ -2,13 +2,20 @@ let capture;
 let captureButton = document.querySelector('.capture');
 let sidebar = document.querySelector('.sidebar');
 let ui = document.querySelector('.ui');
-let loader = document.querySelector('.logo-loader')
+let loader = document.querySelector('.logo-loader');
+let images = document.querySelector('.similar-images');
+
 function setup() {
   capture = createCapture(VIDEO);
 }
 
 function draw() {
     capture.size(windowWidth, windowHeight);
+}
+
+//show shadow psuedo element if images are overflowing
+if(isOverflown(images)) {
+  images.classList.add('hide');
 }
 
 // on click
@@ -76,4 +83,9 @@ async function sendRequest(image) {
   const res = await fetch('/identify', options)
   .catch(err => console.log)
   return res.json();
+}
+
+// checks if element's content is overflowing
+function isOverflown(element) {
+  return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
 }
