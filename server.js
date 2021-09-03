@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const axios = require('axios');
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
 require("dotenv").config(); //config env
